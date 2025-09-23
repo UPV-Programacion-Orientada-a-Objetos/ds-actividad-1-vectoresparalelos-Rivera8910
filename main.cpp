@@ -5,6 +5,49 @@ using namespace std;
 string *nombres, *paises, *disciplinas, *generos;
 int *medallas;
 int totalAtletas = 0;
+void medallasPorPais() {
+    string paisesUnicos[50];
+    int medallasUnicos[50];
+    int numPaises = 0;
+
+    for (int i = 0; i < totalAtletas; i++) {
+        bool encontrado = false;
+        for (int j = 0; j < numPaises; j++) {
+            if (paisesUnicos[j] == paises[i]) {
+                medallasUnicos[j] += medallas[i];
+                encontrado = true;
+                break;
+            }
+        }
+        if (!encontrado) {
+            paisesUnicos[numPaises] = paises[i];
+            medallasUnicos[numPaises] = medallas[i];
+            numPaises++;
+        }
+    }
+
+    cout << "\nMedallas por país:\n";
+    for (int i = 0; i < numPaises; i++) {
+        cout << paisesUnicos[i] << ": " << medallasUnicos[i] << endl;
+    }
+}
+
+void atletaConMasMedallas() {
+    int maxMedallas = medallas[0];
+    int indiceMax = 0;
+
+    for (int i = 1; i < totalAtletas; i++) {
+        if (medallas[i] > maxMedallas) {
+            maxMedallas = medallas[i];
+            indiceMax = i;
+        }
+    }
+
+    cout << "\nAtleta con más medallas:\n";
+    cout << "Nombre: " << nombres[indiceMax] << endl;
+    cout << "Medallas: " << maxMedallas << endl;
+}
+
 void buscarAtleta() {
     string nombre;
     cout << "Ingrese nombre del atleta: ";
