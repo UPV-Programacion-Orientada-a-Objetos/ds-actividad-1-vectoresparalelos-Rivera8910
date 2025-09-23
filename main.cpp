@@ -5,6 +5,21 @@ using namespace std;
 string *nombres, *paises, *disciplinas, *generos;
 int *medallas;
 int totalAtletas = 0;
+void buscarAtleta() {
+    string nombre;
+    cout << "Ingrese nombre del atleta: ";
+    cin >> nombre;
+
+    for (int i = 0; i < totalAtletas; i++) {
+        if (nombres[i] == nombre) {
+            cout << "Atleta: " << nombres[i] << endl;
+            cout << "País: " << paises[i] << endl;
+            cout << "Medallas: " << medallas[i] << endl;
+            return;
+        }
+    }
+    cout << "Atleta no encontrado" << endl;
+}
 void menu();
  int opcion;
     do {
